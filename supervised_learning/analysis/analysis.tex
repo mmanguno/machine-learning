@@ -1,0 +1,37 @@
+\section{Algorithm Analysis}
+
+\subsection{AdaBoost}
+
+AdaBoost proved to perform very well on both of the data sets. However, in the `breast cancer' data set, the algorithm very obviously over-fit. Observe the graph: the algorithm got a telling 100\% of the training examples right, and a staggering 95\% accuracy on the test score. Coupled with the usage of 1000 estimators, something is clearly awry. This is due simply to the nature of the data: too few instances and too many attributes led to the algorithm over-fitting. Turning to the `bank marketing' set, the results are questionable: 90\% accuracy is suspicious, as it may be over fitting, but it could also just be a very good performance. The trend downward in training leads me to believe that this is not a case of over-fitting, but an unusually good performance, especially given the large number of instances, which should work against over-fitting.
+
+Having chosen the estimator as a decision tree seems to be a fair decision: the learning rates produced indicate a successful weak learner at action, and the relatively low cost of a decision tree yielded a reasonable processing time.
+
+\subsection{\textit{k}-nearest neighbors}
+
+Like AdaBoost, \textit{k}-nearest neighbors performed suspiciously well on the data. Unlike it, there are fewer signs of such extreme over-fitting. It is ambiguous as to whether or not the algorithm over-fit in both instances (though the likelihood is very high). The high accuracy points to over-fitting, yet the curves generated are not immediately indicative. I lean towards classifying as over-fitting.
+
+Another aspect to make note of is the \textit{k} chosen as the `best'. For `breast cancer' $k=7$ seems a reasonable amount, but is surprising: for something with so few instances (in comparison to the number of attributes), a higher \textit{k} would be expected. However, it appears that with only 7 similar members of data, the algorithm very accurately predicted. Conversely, the `bank marketing' set, with a fair balance of instance-to-attribute, required 26 neighbors to result in still a high accuracy. At this many neighbors, I must cast aspersions upon the strength of the model. The instances must not be very related in this case.
+
+\subsection{Decision tree}
+
+The decision tree algorithm run (pruned via maximum depth) produced (again) stellar results. And as with stellar results, we must take an immediately pessimistic/critical view. `Breast cancer' has the most obvious issues. First, the training score is (once again) 100\%. Second, the best depth was way down at 212, meaning that it has inherited much from the structure of the data, and has not necessarily learned anything. Finally, the high accuracy is telling of over-fitting. `Bank marketing' conversely performed well while also having a non-abysmal learning curve and depth. With a depth of 6, we can reasonably assume that some learning of value occurred.
+
+With the decision tree analysis, we can also come to view what relative values the algorithm put on certain attributes. For `bank marketing', ``duration" proved to be extremely significant. ``Duration" describes ``last contact duration, in seconds" between the bank and the client. So why does this appear so valuable? The only way to confirm a deposit is by calling the bank, so if duration=0, the result is always ``no". This is noted by the authors of the data set. It is a sure way of determining if someone will not subscribe. Setting this value aside, the bank's own prediction is of prime importance. Following that, the values are mixed.
+
+For `breast cancer' the results are more interesting. As stated earlier, the data set is comprised of 10 attributes represented in 3 ways. Here, the results show that the decision tree algorithm awards relatively similar significance to each attribute across the 3 different viewpoints. The is seen most sharply from attributes ``smoothness" to ``fractal dimension", which are consistently zero (sans compactness in the ``worst" section). In this sense, it seems the algorithm learned something (that there is some connection between similar attributes). The most valuable attribute here was ``worst perimeter". Essentially, the larger the nuclei of the tumour, the more often it is malignant; this appears to make logical sense.
+
+\subsection{Neural network}
+
+Certainly the neural network contains the most bizarre results: seemingly random spikes dot the `bank marketing' graph, and the `breast cancer' graph is manifested as some sort of perverse mixture of square and triangle wave. Let's first investigate what occurred with `bank marketing'. The neural network was initialized with a learning rate of 0.05, 16 inputs/outputs, and 16 hidden layers (to match the 16 attributes). Samples of the data (tuples of instance and attributes to outcome) were fed to the neural net; the network was cross validated, and run again to obtain the graphs here. The same occurs for `breast cancer', but with different number of inputs/outputs/hidden layers, according to its own number of attributes.
+
+For both of these, there is little explanation I may give, other than a most egregious over-fitting, rendering obscure and opaque results. But even this is not enough: with over-fitting, you would reasonably expect high accuracy, but this not so for `breast cancer'. Perhaps some combination of over-fitting, a mismatch of layers, and a lack of instances is the cause. Perhaps it could be corrected, but perhaps not: consider the low number of instances and high number of attributes. The data set itself may be immune to analysis via neural network.
+
+The neural network for `bank marketing' was far less abysmal: while the occasional spike does occur (most notably at the very end), it does appear to consistently have good accuracy (which, again may be indicative of over-fitting).
+
+\subsection{Support vector machine}
+
+The SVMs here performed adequately well. Of all five, it appears to have the most ``believable" results: the accuracy of each is not as grossly high as the others. However, the curves presented are worrisome: oddly, the cross-validation score in both stays at a constant value. It is unknown if this is some anomaly of data or by nature of the SVM. Regardless, it is strange enough to call the results into question. This is doubly true in the case of the `breast cancer' set, where both the training and test curves are constant, and the training curve is 100\% accurate (indicating over-fitting).
+
+The results indicate that the difference between using a sigmoid and radial basis kernel is little, in these cases. This could be due to the similarity between the functions; a more marked difference may appear when using a polynomial or linear kernel.
+
+Also note how the training curve is lower than the testing curve in `bank marketing'. Considering that both curves originate at the same point and the testing curve is constant, we can be sure that further investigation is needed.

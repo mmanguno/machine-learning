@@ -1,0 +1,23 @@
+\section{Description of Data Sets}
+
+Two data-sets were chosen for this assignment:``bank marketing" and ``breast cancer".
+
+\subsection{Bank marketing}
+
+\subsubsection{Description of data and problem}
+``Bank marketing" is a classification data set consisting of 45211 instances (of a particular bank client), each with 16 attributes. The data set includes information of 3 types: personal features of client (e.g. age, marital status), previous banking data from the client (e.g. has personal loans, have defaulted), and information about the advertising campaign (e.g. number of contacts performed to client).
+
+From this, we wish to determine whether or not a client will subscribed a term deposit.
+
+\subsubsection{Why is it interesting?}
+``Bank marketing" contains well varied data of many forms (some purely numerical, some binary, and some classes). As such, it should do well to accentuate the differences between the supervised learning algorithms used while also producing a relatively good performance for each. The data also contains a balanced amount of features-to-instances to make a classification problem of moderate difficulty: the number of instances is moderately large, and the feature space is not large enough to necessitate a massive amount of instances. It is a strong data set.
+
+\subsection{Breast cancer}
+
+\subsubsection{Description of data and problem}
+``Breast cancer" is a classification data set consisting of 569 instances (of a particular medical patients with breast tumours), each with 30 attributes. The data set includes information concerning the physical aspects of the cell nuclei present in the tumor, restricted only to those traits pertaining to the shape of the nuclei (e.g. radius of nuclei, perimeter of nuclei, concavity of nuclei). Each of these attributes are real numbers, and are represented thrice for each attribute: once for the mean value of the nuclei attribute, once for the standard error, and once for the `worst value' found of the certain attribute.
+
+From this, we wish to determine whether or a not a tumour is malignant or benign.
+
+\subsubsection{Why is it interesting?}
+With only 569 instance and 30 attributes each, this data set should prove challenging to correctly classify. However, knowing that these 30 attributes are really just 10 attributes represented in 3 ways may provide interesting information as to how the algorithms treat data that represents the same thing (e.g. will the algorithm put equal importance to all 3 ways, or only two or one). Finally, the data is entirely numerical; this should make it much harder to reach correct classification, and thus sharply show which algorithms succeed and which do not.
