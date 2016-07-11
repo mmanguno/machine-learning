@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage[english]{babel}
 \usepackage{caption}
 \usepackage{float}
 \usepackage[margin=1in]{geometry}
@@ -10,9 +11,20 @@
 
 \renewcommand{\figurename}{\textit{fig.}}
 
+\selectlanguage{english}
+
+\pagenumbering{arabic}
+
+
+
 \hypersetup{
     colorlinks,
+    filecolor=black,
     linkcolor={red!50!black},
     citecolor={blue!50!black},
-    urlcolor={blue!80!black}
+    urlcolor={blue!80!black},
+    bookmarksopen=true,
+    pdftex
 }
+
+\hfuzz = .6pt % avoid black boxes
